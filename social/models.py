@@ -29,6 +29,7 @@ class Post(models.Model):
 	timestamp = models.DateTimeField(default=timezone.now)
 	content = models.TextField()
 	comments = models.ForeignKey('Comment', on_delete=models.CASCADE, related_name='post_comments', null=True, blank=True)
+	image = models.ImageField(upload_to='post_images', blank=True, null=True)
 
 	class Meta:
 		ordering = ['-timestamp']
