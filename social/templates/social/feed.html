@@ -11,36 +11,29 @@
             <i class="clock"></i>
             <time data-time="#">{{ post.timestamp|naturaltime }}</time>
             <div class="post">{{ post.content }}</div>
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 500px;">
+            {% endif %}
+            <h4>Comentarios</h4>
+            <ul>
+                {% for comment in post.comments.all %}
+                <li>{{ comment.author }}: {{ comment.text }}</li>
+                {% endfor %}
+            </ul>
+            <!-- agregar un formulario para agregar un nuevo comentario -->
+            <form method="POST" action="{% url 'post_comments' post.pk %}">
+                {% csrf_token %}
+                <label for="author">Autor:</label>
+                <input type="text" name="author">
+                <br>
+                <label for="text">Comentario:</label>
+                <textarea name="text"></textarea>
+                <br>
+                <button type="submit">Agregar comentario</button>
+            </form>
         </div>
     </div>
 </article>
-
 {% endfor %}
 
-{% for post in posts %}
-<div class="post">
-    <h3>{{ post.title }}</h3>
-    <p>{{ post.content }}</p>
-    {% if post.image %}
-    <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 500px;">
-    {% endif %}
-    <h4>Comentarios</h4>
-    <ul>
-        {% for comment in post.comments.all %}
-        <li>{{ comment.author }}: {{ comment.text }}</li>
-        {% endfor %}
-    </ul>
-    <!-- agregar un formulario para agregar un nuevo comentario -->
-    <form method="POST" action="{% url 'post_comments' post.pk %}">
-        {% csrf_token %}
-        <label for="author">Autor:</label>
-        <input type="text" name="author">
-        <br>
-        <label for="text">Comentario:</label>
-        <textarea name="text"></textarea>
-        <br>
-        <button type="submit">Agregar comentario</button>
-    </form>
-</div>
-{% endfor %}
 {% endblock %}
