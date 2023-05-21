@@ -1,14 +1,9 @@
 {% extends 'social/layout.html' %}
 
 {% block content %}
-  <h2>Buscar usuario</h2>
-  <form method="GET" action="{% url 'buscar_usuario' %}">
-    {{ form }}
-    <button type="submit">Buscar</button>
-  </form>
+  <h2>RESULTADOS: </h2>
 
   {% if resultados %}
-    <h3>Resultados:</h3>
     <ul>
       {% for usuario in resultados %}
       <img src="{{ usuario.profile.image.url }}" alt="Foto de perfil" class="profile-picture">
