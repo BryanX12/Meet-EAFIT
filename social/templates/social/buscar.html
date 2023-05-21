@@ -7,7 +7,7 @@
     <ul>
       {% for usuario in resultados %}
       <img src="{{ usuario.profile.image.url }}" alt="Foto de perfil" class="profile-picture">
-        <li><a href="{% url 'profile' usuario.username %}">{{ usuario.username }}</a></li>
+        <li class="username"><a href="{% url 'profile' usuario.username %}">{{ usuario.username }}</a></li>
       {% empty %}
         <li>No se encontraron usuarios</li>
       {% endfor %}
