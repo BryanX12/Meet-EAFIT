@@ -2,7 +2,7 @@
 {% load static %}
 <html>
 <head>
-	<title>Django Social</title>
+	<title>Meet-EAFIT</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="{% static 'normalize.css' %}">
@@ -12,6 +12,7 @@
 
 	<header class="main-head">
 		<nav class="main">
+			<img src="{% static 'Logo.png' %}" alt="Logo de Meet-EAFIT" style="width: 60px;">
 			<h1 id="logo">Bienvenido a Meet-EAFIT!</h1>
 			<ul>
 				{% if request.user.is_authenticated %}

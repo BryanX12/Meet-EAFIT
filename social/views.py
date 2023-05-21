@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
-from .forms import UserRegisterForm, PostForm, CommentForm
+from .forms import UserRegisterForm, PostForm, CommentForm, EncuestaForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -88,3 +88,16 @@ def add_comment_to_post(request, post_id):
     else:
         form = CommentForm()
     return render(request, 'social/post.html', {'form': form})
+
+
+def encuesta(request):
+    if request.method == 'POST':
+        form = EncuestaForm(request.POST)
+        if form.is_valid():
+            encuesta = form.save(commit=False)
+            encuesta.usuario = request.user
+            encuesta.save()
+            return redirect('feed')
+    else:
+        form = EncuestaForm()
+    return render(request, 'social/encuesta.html', {'form': form})

@@ -14,6 +14,7 @@ urlpatterns = [
                   path('post/', views.post, name='post'),
                   path('follow/<str:username>/', views.follow, name='follow'),
                   path('unfollow/<str:username>/', views.unfollow, name='unfollow'),
-                  path('posts/<int:post_id>/comment/', views.add_comment_to_post, name='post_comments')
+                  path('posts/<int:post_id>/comment/', views.add_comment_to_post, name='post_comments'),
+                  path('encuesta/', views.encuesta, name='encuesta')
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
