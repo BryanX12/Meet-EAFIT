@@ -1,16 +1,50 @@
 {% extends 'social/layout.html' %}
 {% load humanize %}
+{% load static %}
 {% block content %}
+
+<head>
+    <!-- Incluir enlaces de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Incluir enlaces de jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Incluir enlaces del complemento Slick Carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <!-- Incluir tu archivo script.js -->
+    <script src="{% static 'script.js' %}"></script>
+
+    <!-- Incluir tu archivo style.css -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
 
 <div class="button-container">
     <br>
     <br>
     <br>
-    <a href="{% url 'encuesta' %}" class="btn btn-primary">Nos ayudas con una encuesta rápida? :)</a>
+    <a href="{% url 'encuesta' %}" class="btn btn-primary">¿Nos ayudas con una encuesta rápida? :)</a>
     <br>
     <br>
     <a href="{% url 'analitica_encuesta' %}" class="btn btn-primary">Ver respuestas de las encuestas</a>
 </div>
+
+<div class="carousel-container">
+    <h3 class="carousel-title">Información importante Eafit</h3> <!-- Texto encima del carrusel -->
+  <div class="carousel">
+    <div><img src="media/Carrusel/Calendar.png" alt="Imagen 1"></div>
+    <div><img src="media/Carrusel/INVENTIVA-1500.jpg" alt="Imagen 2"></div>
+    <div><img src="media/Carrusel/intinerario-300x200.jpg" alt="Imagen 3"></div>
+  </div>
+
+    <div class="carousel-buttons">
+      <div class="carousel-prev">Previous</div>
+      <div class="carousel-next">Next</div>
+    </div>
+</div>
+
 {% for post in posts %}
 <article>
     <div class="container-article">
@@ -30,7 +64,6 @@
                 </li>
                 {% endfor %}
             </ul>
-            <!-- Agregar un formulario para agregar un nuevo comentario -->
             <form method="POST" action="{% url 'post_comments' post.pk %}">
                 {% csrf_token %}
                 <input type="text" name="content" placeholder="Escribe un comentario" required>
