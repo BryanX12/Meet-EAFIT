@@ -1,9 +1,14 @@
+import os
 from django.shortcuts import render, redirect, get_object_or_404
+from social_django import settings
 from .models import *
 from .forms import UserRegisterForm, PostForm, CommentForm, EncuestaForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 def feed(request):
     posts = Post.objects.all()
@@ -101,3 +106,54 @@ def encuesta(request):
     else:
         form = EncuestaForm()
     return render(request, 'social/encuesta.html', {'form': form})
+
+
+def analitica_encuesta(request):
+    respuestas = Encuesta.objects.all()
+
+    # Obtener los datos de las respuestas
+    respuestas_gusta = [encuesta.gusta_meet_eafit for encuesta in respuestas]
+    respuestas_seguira_usando = [encuesta.seguira_usando for encuesta in respuestas]
+    respuestas_satisfaccion_carrera = [encuesta.satisfaccion_carrera for encuesta in respuestas]
+
+    # Generar gráfico: Gusto de Meet-EAFIT
+    plt.figure(figsize=(6, 4))
+    plt.hist(respuestas_gusta, bins=5, range=(1, 5), edgecolor='black')
+    plt.xlabel('Gusto de Meet-EAFIT')
+    plt.ylabel('Cantidad de Respuestas')
+    plt.title('Encuesta: Gusto de Meet-EAFIT')
+    plt.grid(True)
+    figura_path_gusta = os.path.join(settings.MEDIA_ROOT, 'graficos', 'grafico_gusta.png')
+    plt.savefig(figura_path_gusta)
+
+    # Generar gráfico: Seguirá usando Meet-EAFIT
+    plt.figure(figsize=(6, 4))
+    plt.hist(respuestas_seguira_usando, bins=5, range=(1, 5), edgecolor='black')
+    plt.xlabel('Seguirá usando Meet-EAFIT')
+    plt.ylabel('Cantidad de Respuestas')
+    plt.title('Encuesta: Seguirá usando Meet-EAFIT')
+    plt.grid(True)
+    figura_path_seguira_usando = os.path.join(settings.MEDIA_ROOT, 'graficos', 'grafico_seguira_usando.png')
+    plt.savefig(figura_path_seguira_usando)
+
+    # Generar gráfico: Satisfacción con la carrera
+    plt.figure(figsize=(6, 4))
+    plt.hist(respuestas_satisfaccion_carrera, bins=5, range=(1, 5), edgecolor='black')
+    plt.xlabel('Satisfacción con la carrera')
+    plt.ylabel('Cantidad de Respuestas')
+    plt.title('Encuesta: Satisfacción con la carrera')
+    plt.grid(True)
+    figura_path_satisfaccion_carrera = os.path.join(settings.MEDIA_ROOT, 'graficos', 'grafico_satisfaccion_carrera.png')
+    plt.savefig(figura_path_satisfaccion_carrera)
+
+
+    # Pasar los gráficos a la plantilla analitica_encuesta.html
+    contexto = {
+        'grafico_gusta': figura_path_gusta,
+        'grafico_seguira_usando': figura_path_seguira_usando,
+        'grafico_satisfaccion_carrera': figura_path_satisfaccion_carrera,
+
+    }
+
+    return render(request, 'social/analitica_encuesta.html', contexto)
+
