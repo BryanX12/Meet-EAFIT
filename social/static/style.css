@@ -1,5 +1,5 @@
 body{
-	background: #2F4F4F;
+	background: #1674A7;
 	font-size: 62.5%;
 	font-family: 'Varela Round', Helvetica, Arial, serif;
 }
@@ -26,7 +26,7 @@ button{
 	color: white;
 	padding: 0.4rem 1.4rem;
 	border: none;
-	background: #7A9D96;
+	background: #578f84;
 	 border-radius: 4px;
 	cursor: pointer;
 
@@ -37,9 +37,16 @@ img{
 }
 
 /* Nav bar */
-.main-head{
-	background: white;
-	color: black;
+.main-head {
+	background-color: #1674A7;
+	padding: 20px;
+	text-align: center;
+}
+.main-head .main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
 }
 
 nav.main{
@@ -72,18 +79,44 @@ a{
 }
 
 
-.main{
+.main {
 	background: white;
-	width: 60%;
-	margin: 5% auto;
+	width: 100%;
+	margin: 10% auto;
 	border-radius: 4px;
 	padding-bottom: 20px;
+	box-shadow: 0 4px 500px rgba(0, 0, 0, 0.1); /* Agrega una sombra al layout */
 }
 
 /* NAVIGATION BAR */
-.second-nav{
-	display: flex;
-	padding: 15px 30px;
+/* Estilos para la barra de navegación */
+.second-nav {
+	background-color: #FFFFFF;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	position: relative;
+	z-index: 1;
+}
+
+.second-nav::before {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 1px; /* Reduce la altura de la sombra */
+	background-color: rgba(0, 0, 0, 0.1);
+	z-index: -1;
+}
+
+.second-nav a {
+	text-decoration: none;
+	color: #1674A7;
+	margin-right: 10px;
+}
+
+.second-nav a:hover {
+	color: #ccc;
 }
 
 .second-nav .feed{
@@ -108,7 +141,7 @@ a{
 	flex: 6 1 5rem;
 	text-align: right;
 	text-transform: uppercase;
-  	color: #7A9D96;
+  	color: ##1674A7;
 }
 
 .second-nav .new:hover{
@@ -117,11 +150,19 @@ a{
 
 /* Article */
 
-article{
-	width: 93%;
-	margin: auto;
-	padding: 40px 0;
-	border-bottom: 2px solid #ECEEEF;
+article {
+	background-color: #FFFFFF;
+	box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	margin-bottom: 20px;
+	position: relative;
+	z-index: 1;
+}
+
+
+article h2 {
+	font-size: 1.5rem;
+	color: #1674A7;
 }
 
 .username{
@@ -136,11 +177,21 @@ article{
   display: flex;
 }
 
-.container-article img{
-  height: 68px;
-  width: 68px;
+.profile-picture {
+  height: 80px;
+  width: 80px;
   margin-right: 10px;
   border-radius: 50%;
+  border: 1px solid black;
+}
+
+.post-image {
+  max-width: 50%; /* Ajusta el ancho máximo de la imagen */
+  height: auto; /* Permite que la altura se ajuste proporcionalmente */
+  border-radius: 8px; /* Agrega bordes redondeados */
+  margin-bottom: 10px; /* Agrega un margen inferior */
+  margin-top: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
 }
 
 article:last-child {
@@ -152,8 +203,12 @@ time {
   opacity: .7;
 }
 
-.post{
-	font-size: .94rem;
+.post {
+  font-size: 1.1rem; /* Aumenta el tamaño de fuente */
+  line-height: 1.5; /* Ajusta el interlineado */
+  color: #333; /* Cambia el color del texto */
+  margin-bottom: 10px; /* Agrega un margen inferior */
+  font-weight: bold;
 }
 
 /* PROFILE */
@@ -205,7 +260,7 @@ input {
   color: #777B7E;
 }
 input:focus {
-  border-color: #7A9D96;
+  border-color: #578f84;
   color: #2C3238;
 }
 textarea {
@@ -219,14 +274,14 @@ textarea {
   color: #777B7E;
 }
 textarea:focus {
-  border-color: #7A9D96;
+  border-color: #578f84;
   color: #2C3238;
 }
 button#submit {
   width: 100%;
   padding: 20px 0;
   text-align: center;
-  background: #7A9D96;
+  background: #578f84;
   color: #fff;
   border: 0;
   border-radius: 4px;
@@ -258,11 +313,13 @@ button#submit:hover {
 
 
 /*Footer*/
-footer{
-  color: white;
-  text-align: center;
-  font-size: .875em;
-  margin: 40px 0;
+footer {
+	background-color: #1674A7;
+	padding: 20px;
+	text-align: center;
+}
+footer .row {
+	margin: 0;
 }
 
 footer p {
@@ -293,3 +350,174 @@ img.profile{
   }
 
 }
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background: #578f84;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #578f84;
+}
+
+.btn:hover {
+  background-color: #5D809E;
+}
+
+.button-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Agrega una línea divisoria debajo del layout */
+.main .second-nav {
+  border-bottom: 4px solid #1674A7;
+  padding-bottom: 10px;
+}
+
+/* Centrar el texto "Bienvenido a Meet-EAFIT!" */
+.main-head #logo {
+  text-align: center;
+}
+
+.main-head .logo {
+	width: 60px;
+}
+
+.main-head .logo-title {
+	font-size: 24px;
+	margin-left: 10px;
+}
+
+.main-head .nav-links {
+	list-style: none;
+	margin-left: auto;
+}
+
+.main-head .nav-links li {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.main-head .nav-links li a {
+	text-decoration: none;
+	color: #333;
+}
+
+.main-head .nav-links li a:hover {
+	color: #666;
+}
+
+
+/* Desplazar el botón "Logout" hacia la derecha */
+nav.main ul li:last-child {
+  margin-left: auto;
+}
+
+/* Estilizar el botón "Logout" como un botón */
+nav.main ul li:last-child a {
+  padding: 8px 16px;
+  background-color: #1674A7;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+}
+
+nav.main ul li:last-child a:hover {
+  background-color: #5D809E;
+}
+.main-content {
+	margin: 20px;
+	padding: 20px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+.row {
+	display: flex;
+	justify-content: center;
+}
+
+.comment-box {
+    background-color: #F2F2F2;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.comment-box p {
+    margin: 0;
+}
+
+.comment-box .author {
+    font-weight: bold;
+}
+
+.comment-box .content {
+    margin-left: 10px;
+}
+
+.comment-box .content:before {
+    content: "- ";
+}
+
+.carousel-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.carousel {
+  /* Elimina la regla "display: none;" para que el carrusel sea visible */
+}
+
+.carousel img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-title {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.carousel-buttons {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.carousel-prev,
+.carousel-next {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background: #578f84;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.carousel-prev {
+  margin-right: 10px;
+}
+
+.carousel-next {
+  margin-left: 10px;
+}
+
+
+
+
+
