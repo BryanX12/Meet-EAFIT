@@ -40,3 +40,7 @@ class EncuestaForm(forms.ModelForm):
             'seguira_usando': '¿Cuanto crees seguir usando Meet-EAFIT del 1 al 5?',
             'satisfaccion_carrera': '¿Qué tan conforme estas con tu carrera del 1 al 5?'
         }
+
+class BuscarUsuarioForm(forms.Form):
+    busqueda = forms.CharField(label='Buscar usuario', max_length=100, widget=forms.TextInput(attrs={'class': 'buscar-input'}))
+

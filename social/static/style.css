@@ -517,6 +517,11 @@ nav.main ul li:last-child a:hover {
   margin-left: 10px;
 }
 
+.buscar-input {
+    margin-top: 8px; /* Ajusta el margen superior según necesites */
+    margin-right: 10px; /* Ajusta el margen derecho según necesites */
+}
+
 
 
 

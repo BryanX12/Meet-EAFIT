@@ -2,7 +2,7 @@ import os
 from django.shortcuts import render, redirect, get_object_or_404
 from social_django import settings
 from .models import *
-from .forms import UserRegisterForm, PostForm, CommentForm, EncuestaForm
+from .forms import UserRegisterForm, PostForm, CommentForm, EncuestaForm, BuscarUsuarioForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -156,4 +156,15 @@ def analitica_encuesta(request):
     }
 
     return render(request, 'social/analitica_encuesta.html', contexto)
+
+
+def buscar_usuario(request):
+    form = BuscarUsuarioForm(request.GET)
+    resultados = []
+
+    if form.is_valid():
+        busqueda = form.cleaned_data['busqueda']
+        resultados = User.objects.filter(username__icontains=busqueda)
+
+    return render(request, 'social/buscar.html', {'form': form, 'resultados': resultados})
 
