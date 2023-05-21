@@ -2,40 +2,38 @@
 {% load humanize %}
 {% block content %}
 
-<a href="{% url 'encuesta' %}" class="btn btn-primary">Nos ayudas con una encuesta rapida? :)</a>
-<br>
-<br>
-<br>
-<br>
-<br>
-<a href="{% url 'analitica_encuesta' %}" class="btn btn-primary">Ver respuestas de las encuestas</a>
+<div class="button-container">
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'encuesta' %}" class="btn btn-primary">Nos ayudas con una encuesta rápida? :)</a>
+    <br>
+    <br>
+    <a href="{% url 'analitica_encuesta' %}" class="btn btn-primary">Ver respuestas de las encuestas</a>
+</div>
 {% for post in posts %}
 <article>
     <div class="container-article">
-        <img src="{{ post.user.profile.image.url }}">
+        <img src="{{ post.user.profile.image.url }}" alt="Foto de perfil" class="profile-picture">
         <div>
             <h2 class="username"><a href="{% url 'profile' post.user.username %}">@{{ post.user.username }}</a></h2>
             <i class="clock"></i>
             <time data-time="#">{{ post.timestamp|naturaltime }}</time>
             <div class="post">{{ post.content }}</div>
             {% if post.image %}
-            <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 500px;">
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
             {% endif %}
-            <h4>Comentarios</h4>
             <ul>
-                {% for comment in post.comments.all %}
-                <li>{{ comment.author }}: {{ comment.text }}</li>
+                {% for comment in post.post_comments.all %}
+                <li class="comment-box">
+                    <p><span class="author">{{ comment.user }}</span>: <span class="content">{{ comment.content }}</span></p>
+                </li>
                 {% endfor %}
             </ul>
-            <!-- agregar un formulario para agregar un nuevo comentario -->
+            <!-- Agregar un formulario para agregar un nuevo comentario -->
             <form method="POST" action="{% url 'post_comments' post.pk %}">
                 {% csrf_token %}
-                <label for="author">Autor:</label>
-                <input type="text" name="author">
-                <br>
-                <label for="text">Comentario:</label>
-                <textarea name="text"></textarea>
-                <br>
+                <input type="text" name="content" placeholder="Escribe un comentario" required>
                 <button type="submit">Agregar comentario</button>
             </form>
         </div>

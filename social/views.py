@@ -92,7 +92,7 @@ def add_comment_to_post(request, post_id):
             return redirect('feed')
     else:
         form = CommentForm()
-    return render(request, 'social/post.html', {'form': form})
+    return render(request, 'social/add_comment_to_post.html', {'form': form})
 
 
 def encuesta(request):
