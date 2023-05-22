@@ -39,7 +39,7 @@
 	<div class="main-content">
 
 		<nav class="second-nav">
-			{% if request.resolver_match.view_name != 'login' %}
+			{% if request.resolver_match.view_name != 'login' and request.resolver_match.view_name != 'register' %}
 			<form class="navbar-form navbar-right" method="GET" action="{% url 'buscar_usuario' %}">
                 {% csrf_token %}
                 <input class="buscar-input" type="text" name="busqueda" placeholder="Buscar usuario" required>
